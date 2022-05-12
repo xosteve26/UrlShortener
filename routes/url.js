@@ -9,8 +9,10 @@ const Url=require('../models/Url');
 //@route POST /api/url/shrink
 //@desc Shrink a URL
 router.post('/shrink',async (req,res)=>{
-    const { longUrl } = req.body
+    const { longUrl, expiration } = req.body
     const baseUrl = config.get('baseUrl');
+    console.log(Date.now());
+    console.log(Date.now() + 1000 * 60 * 60 * 24 * 7);
 
     if(!validUrl.isUri(baseUrl)){
         return res.status(401).json('Invalid Base Url')
@@ -28,11 +30,13 @@ router.post('/shrink',async (req,res)=>{
             }
             else {
                 const shortUrl = baseUrl + '/' + urlCode;
+                let currentTime= Date.now()
                 const urlDocument = new Url({
                     longUrl,
                     shortUrl,
                     urlCode,
-                    date: new Date()
+                    createdAt: new Date(currentTime),
+                    expireAt: new Date(currentTime+(expiration*1000))
                 });
 
                 await urlDocument.save()

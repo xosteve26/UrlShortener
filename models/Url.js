@@ -4,10 +4,10 @@ const UrlSchema = new mongoose.Schema({
     urlCode: String,
     longUrl: String,
     shortUrl: String,
-    date: {type: String, default:Date.now},
-},{
-    timeseries:true
+    createdAt: { type: Date, default: Date.now },
+    expireAt: { type: Date, default: undefined }
 })
 
+UrlSchema.index({ "expireAt": 1 }, { expireAfterSeconds: 0 });
 
 module.exports=mongoose.model('Url',UrlSchema);
