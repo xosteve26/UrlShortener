@@ -81,6 +81,8 @@ Sample Response:
 ```
 @route GET /:code
 @desc Redirect to long/original url
+
+Example : https://nesrt.herokuapp.com/9fqtZ5QhA
 ```
 
 By pasting the value of the "shortUrl" from the response body, the required site can be accessed.
