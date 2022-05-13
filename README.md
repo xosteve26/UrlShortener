@@ -2,7 +2,7 @@
 
 > An API developed using Node JS, Express JS to shorten URLs with an option of expiration
 
-## Replicate & Usage
+## Replicate
 
 - Clone the repository
 ```
@@ -19,8 +19,10 @@ npm install
 - Run the `npm run start` command
 - Open up your browser to access the server thorugh `http://localhost:5000`.
 
+## Usage 
+- The API can be directly accessed through url where the API has been deployed `https://nesrt.herokuapp.com/`
+- The API can be made use of through an API verification tool such as POSTMAN, INSOMNIA etc
 ## Routes
-
 #### Route to shrink url:
 ```
 @route: /api/url/shrink
@@ -55,7 +57,7 @@ Sample Response:
         {
             "urlCode": "JaOlA0evY",
             "longUrl": "https://excalidraw.com/",
-            "shortUrl": "http://localhost:5000/JaOlA0evY",
+            "shortUrl": "https://nesrt.herokuapp.com/JaOlA0evY",
             "createdAt": "2022-05-13T06:19:32.311Z",
             "expireAt": "2022-05-13T06:19:42.311Z",
             "_id": "627df874e54b1ed1c075f828",
@@ -66,7 +68,7 @@ Sample Response:
         {
             "urlCode": "9fqtZ5QhA",
             "longUrl": "https://google.com",
-            "shortUrl": "http://localhost:5000/9fqtZ5QhA",
+            "shortUrl": "https://nesrt.herokuapp.com/9fqtZ5QhA",
             "createdAt": "2022-05-13T06:31:42.745Z",
             "_id": "627dfb4e5b87ee6879bb7fd0",
             "__v": 0
@@ -77,8 +79,8 @@ Sample Response:
 
 #### Route to access the shortened url:
 ```
-//@route GET /:code
-//@desc Redirect to long/original url
+@route GET /:code
+@desc Redirect to long/original url
 ```
 
 By pasting the value of the "shortUrl" from the response body, the required site can be accessed.
