@@ -2,7 +2,11 @@ const express = require('express');
 const router=express.Router();
 
 const Url= require('../models/Url');
-
+//@route GET /
+//@desc Introduction
+router.get('/',(req,res)=>{
+    res.send('Welcome to Url Shortener');
+});
 //@route GET /:code
 //@desc Redirect to long/original url
 router.get('/:code', async(req,res)=>{
