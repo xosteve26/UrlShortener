@@ -21,19 +21,19 @@ npm install
 
 ## Routes
 
-- URL Shrink Route:
+#### Route to shrink url:
 ```
 @route: /api/url/shrink
 @method: POST
 @desc: To shrink the url
 ```
-```
+
 
 Fields in the request body:
 
-"longUrl" - The url that needs to br shrunk [Value Data type: String]  [Required]
-"expiration" - The number of seconds the url needs to live [Value Data type: Integer] [Optional]
-```
+- "longUrl" - The url that needs to br shrunk [Value Data type: String]  [Required]
+- "expiration" - The number of seconds the url needs to live [Value Data type: Integer] [Optional]
+
 ```
 Sample Request Body:
 
@@ -75,7 +75,7 @@ Sample Response:
 ```
 
 
-- Access the shortened url
+#### Route to access the shortened url:
 ```
 //@route GET /:code
 //@desc Redirect to long/original url
