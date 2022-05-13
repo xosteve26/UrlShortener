@@ -36,7 +36,7 @@ router.post('/shrink',async (req,res)=>{
                     shortUrl,
                     urlCode,
                     createdAt: new Date(currentTime),
-                    expireAt: new Date(currentTime+(expiration*1000))
+                    expireAt: expiration && new Date(currentTime+(expiration*1000)) 
                 });
 
                 await urlDocument.save()
