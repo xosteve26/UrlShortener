@@ -5,7 +5,7 @@ const Url= require('../models/Url');
 //@route GET /
 //@desc Introduction
 router.get('/',(req,res)=>{
-    res.send('Welcome to Url Shortener');
+    res.send('Welcome to Node Url Shortener API');
 });
 //@route GET /:code
 //@desc Redirect to long/original url
