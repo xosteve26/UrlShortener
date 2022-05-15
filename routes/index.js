@@ -16,7 +16,7 @@ router.get('/:code', async(req,res)=>{
         if(url){
             return res.redirect(url.longUrl);
         }else{
-            return res.status(404).json('Url not found');
+            return res.status(404).json('Url not found | Expired');
         }
     }catch (err){
         console.log(err)
