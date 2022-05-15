@@ -3,7 +3,6 @@ const router = express.Router();
 const validUrl=require('valid-url');
 const shortid=require('shortid');
 const config=require('config');
-const redis = require('redis');
 
 
 const Url=require('../models/Url');
@@ -25,17 +24,19 @@ router.post('/shrink',async (req,res)=>{
 
     //Check long url
     if(validUrl.isUri(longUrl)){
-        if(req.session[longUrl]){
-            console.log("IN IF")
+        if(req.session[longUrl] && new Date(req.session[longUrl]['expireAt']) > new Date(Date.now())){
+            console.log("CACHE")
             res.json(req.session[longUrl])
         }
         else{
             try {
                 let url = await Url.findOne({ longUrl: longUrl });
                 if (url) {
+                    console.log("URL EXISTS")
                     res.json(url);
                 }
                 else {
+                    console.log("URL DOES NOT EXIST")
                     const shortUrl = baseUrl + '/' + urlCode;
                     let currentTime = Date.now()
                     const urlDocument = new Url({
@@ -47,8 +48,8 @@ router.post('/shrink',async (req,res)=>{
                     });
 
                     await urlDocument.save()
-                    req.session[longUrl] = urlDocument;
-                    console.log(req.session)
+                    //Caching the url
+                    req.session[longUrl] = urlDocument
 
                     res.status(200).json(urlDocument);
                 }
